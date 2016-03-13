@@ -15,7 +15,7 @@ const paths = {
     'vendor': './node_modules/',
     'dist': {
         'public': './../public/generated/js/',
-        'server': './../javascripts/src/main/resources/js/'
+        'server': './src/main/resources/js/'
     }
 };
 

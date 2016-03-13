@@ -1,25 +1,19 @@
 name := """play-reactjs"""
 
-version := "1.0-SNAPSHOT"
+version in ThisBuild := "1.0-SNAPSHOT"
 
 
 lazy val app = (project in file("."))
-    .enablePlugins(PlayScala)
-    .dependsOn(js)
+  .enablePlugins(PlayScala)
+  .dependsOn(ui)
+  .aggregate(ui)
 
-lazy val js = (project in file("javascripts"))
-  .settings(
-    version := "1.0-SNAPSHOT",
-    scalaVersion := "2.11.7",
-    libraryDependencies ++= Seq(
-      "com.typesafe.play" %% "play" % "2.5.0"
-    )
-  )
+lazy val ui = (project in file("modules/ui"))
+  .enablePlugins(PlayScala)
 
+scalaVersion in ThisBuild := "2.11.7"
 
-scalaVersion := "2.11.7"
-
-libraryDependencies ++= Seq(
+libraryDependencies in ThisBuild ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test
 )
 
