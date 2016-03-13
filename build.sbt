@@ -12,7 +12,7 @@ lazy val js = (project in file("javascripts"))
     version := "1.0-SNAPSHOT",
     scalaVersion := "2.11.7",
     libraryDependencies ++= Seq(
-      "com.typesafe.play" %% "play" % "2.4.3"
+      "com.typesafe.play" %% "play" % "2.5.0"
     )
   )
 
@@ -20,7 +20,7 @@ lazy val js = (project in file("javascripts"))
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  specs2 % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test
 )
 
 // resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

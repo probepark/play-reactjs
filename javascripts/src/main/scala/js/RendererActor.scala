@@ -1,28 +1,20 @@
 package js
 
-import akka.actor._
 import javax.script._
 
-import RendererActor._
+import akka.actor._
+import js.RendererActor._
 
 class RendererActor extends Actor with ActorLogging {
 
   private val engine: ScriptEngine = createNashorn
 
   def receive = {
-    case _@ToRender(js) => {
+    case _@ToRender(js) =>
       val replyTo = sender()
       log.debug(s"Request for rendering js: $js")
-      // try {
-        val data = engine.eval(js).toString()
-        replyTo ! RenderedData(data)
-      // } catch {
-      //   case e: Exception =>
-      //     log.error(e.getMessage)
-      //     replyTo ! RenderError(e)
-      // }
-    }
-
+      val data = engine.eval(js).toString
+      replyTo ! RenderedData(data)
     case _ =>
   }
 
@@ -33,13 +25,12 @@ class RendererActor extends Actor with ActorLogging {
     if (nashorn == null) {
       log.error(s"Unable to find nashorn javascript engine (jdk8?)")
       throw new RuntimeException("Missing nashorn javascript engine")
-      // self ! PoisonPill
     }
 
     nashorn.eval("var global = this;")
     nashorn.eval("var console = {error: print, log: print, warn: print};")
 
-    nashorn.eval(Resources.reactjs)
+    nashorn.eval(Resources.reactJs)
     nashorn.eval(Resources.server)
 
     log.info(s"Nashorn initialized with success")
@@ -50,7 +41,11 @@ class RendererActor extends Actor with ActorLogging {
 }
 
 object RendererActor {
+
   case class ToRender(js: String)
+
   case class RenderedData(data: String)
+
   case class RenderError(e: Exception)
+
 }
