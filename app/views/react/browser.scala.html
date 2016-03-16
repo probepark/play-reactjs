@@ -2,5 +2,7 @@
 
 @main("ReactJS // Browser side rendering") {
   <div id="hello-container"></div>
-  <script src="@routes.Assets.at("generated/js/app.js")"></script>
+  <script src="@controllers.ui.routes.Assets.js("lib/system.js")"></script>
+  <script src="@controllers.ui.routes.Assets.js("config.js")"></script>
+  <script>System.import("app/app.js");</script>
 }
