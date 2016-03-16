@@ -11,11 +11,10 @@ import streamify from 'gulp-streamify';
 import del from 'del'
 
 const paths = {
-    'src': './src/js/',
+    'src': './app/assets/javascripts/app/',
     'vendor': './node_modules/',
     'dist': {
-        'public': './../public/generated/js/',
-        'server': './src/main/resources/js/'
+        'server': './app/assets/javascripts/dist/'
     }
 };
 
@@ -23,16 +22,16 @@ const paths = {
 // Js For Browser
 //
 
-gulp.task('build-js-browser', function () {
-    return browserify({entries: paths.src + 'app.js'})
-        .transform(babelify)
-        .bundle()
-        .pipe(source('app.js'))
-        .pipe(gulp.dest(paths.dist.public))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(streamify(uglify({mangle: false, preserveComments: 'some'})))
-        .pipe(gulp.dest(paths.dist.public))
-});
+//gulp.task('build-js-browser', function () {
+//    return browserify({entries: paths.src + 'app.js'})
+//        .transform(babelify)
+//        .bundle()
+//        .pipe(source('app.js'))
+//        .pipe(gulp.dest(paths.dist.public))
+//        .pipe(rename({suffix: '.min'}))
+//        .pipe(streamify(uglify({mangle: false, preserveComments: 'some'})))
+//        .pipe(gulp.dest(paths.dist.public))
+//});
 
 //
 // Js For Server
@@ -59,7 +58,7 @@ gulp.task('build-js-server', function (cb) {
 });
 
 gulp.task('build-js', function (cb) {
-    runSequence('build-js-browser', 'build-js-server', cb);
+    runSequence('build-js-server', cb);
 });
 
 // --- Clean all generated files

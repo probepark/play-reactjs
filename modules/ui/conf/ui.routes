@@ -1,1 +1,2 @@
-GET        /assets/*file         controllers.Assets.at(path="/public/web", file)
+GET        /assets/*file        controllers.ui.Assets.versioned(path="/public/lib/ui", file)
+GET        /js/*file            controllers.ui.Assets.js(path="/public/lib/ui/javascripts", file: Asset)

@@ -8,3 +8,5 @@ target
 /RUNNING_PID
 node_modules
 generated
+lib
+dist
