@@ -21,7 +21,8 @@
     "jspm": "^0.16.31",
     "react": "^0.14.7",
     "run-sequence": "^1.1.2",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "react-dom": "latest"
   },
   "jspm": {
     "directories": {

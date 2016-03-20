@@ -1,12 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import HelloMessage from './components/hello';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/app";
 
-const container = document != null ? document.getElementById('hello-container') : null
-
-if (container) {
-  ReactDOM.render(
-    <HelloMessage name="John (from browser)" />,
-    container
-  )
-}
+ReactDOM.render(
+    React.createElement(App, null),
+    document.getElementById("application")
+);

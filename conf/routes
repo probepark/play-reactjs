@@ -3,9 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /react/browser              controllers.React.browser
-GET     /react/server               controllers.React.server
+GET     /                           controllers.React.index
 
 -> /ui ui.Routes
 
