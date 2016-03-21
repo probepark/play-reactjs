@@ -4,7 +4,8 @@
   "private": true,
   "main": "gulpfile.babel.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -p 8000"
   },
   "author": "Fabien Pennequin",
   "devDependencies": {
@@ -12,7 +13,7 @@
     "babelify": "^6.3.0",
     "browserify": "^11.0.1",
     "del": "^2.0.1",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-babel": "^5.2.1",
     "gulp-concat": "^2.6.0",
     "gulp-rename": "^1.2.2",
@@ -20,14 +21,15 @@
     "gulp-uglify": "^1.4.0",
     "jspm": "^0.16.31",
     "react": "^0.14.7",
+    "react-dom": "latest",
     "run-sequence": "^1.1.2",
-    "vinyl-source-stream": "^1.1.0",
-    "react-dom": "latest"
+    "systemjs-builder": "^0.15.13",
+    "vinyl-source-stream": "^1.1.0"
   },
   "jspm": {
     "directories": {
-      "baseURL": "app/assets/javascripts",
-      "packages": "app/assets/javascripts/lib"
+      "baseURL": "public",
+      "packages": "public/lib"
     },
     "dependencies": {
       "bootstrap": "github:twbs/bootstrap@^3.3.6",

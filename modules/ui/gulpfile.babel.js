@@ -1,20 +1,16 @@
-import gulp from 'gulp';
-import babel from 'gulp-babel';
-import browserify from 'browserify';
-import babelify from 'babelify';
-import runSequence from 'run-sequence';
-import source from 'vinyl-source-stream';
-import uglify from 'gulp-uglify';
-import rename from 'gulp-rename';
-import concat from 'gulp-concat';
-import streamify from 'gulp-streamify';
-import del from 'del'
+import gulp from "gulp";
+import babel from "gulp-babel";
+import runSequence from "run-sequence";
+import concat from "gulp-concat";
+import del from "del";
+import Builder from "systemjs-builder";
+
 
 const paths = {
-    'src': './app/assets/javascripts/app/',
+    'src': './public/app/',
     'vendor': './node_modules/',
     'dist': {
-        'server': './app/assets/javascripts/dist/'
+        'server': './public/dist/'
     }
 };
 
@@ -57,8 +53,23 @@ gulp.task('build-js-server', function (cb) {
     runSequence('build-js-server-app', 'build-js-server-deps', cb);
 });
 
+gulp.task('build-js-client', function (cb) {
+    var builder = new Builder('public', './public/config.js');
+
+    builder
+        .buildStatic(paths.src + 'app.js', 'public/dist/client.js', { runtime: false })
+        .then(function () {
+            console.log('Build complete');
+            cb();
+        })
+        .catch(function (err) {
+            console.log('Build error');
+            console.log(err);
+            cb(err);
+        });
+});
 gulp.task('build-js', function (cb) {
-    runSequence('build-js-server', cb);
+    runSequence('build-js-server', 'build-js-client', cb);
 });
 
 // --- Clean all generated files

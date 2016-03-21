@@ -1,5 +1,4 @@
 System.config({
-  baseURL: "/ui/js",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {

@@ -8,6 +8,9 @@
     <div class="container" id="application">@content</div>
     <script src="@controllers.ui.routes.Assets.js("lib/system.js")"></script>
     <script src="@controllers.ui.routes.Assets.js("config.js")"></script>
-    <script>System.import("app/app.js");</script>
+    <script>
+            System.paths['*'] = '/ui/js/*';
+            System.import("app/app.js");
+    </script>
   </body>
 </html>

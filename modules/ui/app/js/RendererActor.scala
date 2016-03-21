@@ -24,7 +24,7 @@ class RendererActor @Inject()(environment: Environment) extends Actor with Actor
   }
 
   private def createNashorn = {
-    log.info(s"Starting to intialize nashorn...")
+    log.info(s"Starting to initialize nashorn...")
 
     val nashorn = new ScriptEngineManager(null).getEngineByName("nashorn")
     if (nashorn == null) {
@@ -35,8 +35,8 @@ class RendererActor @Inject()(environment: Environment) extends Actor with Actor
     nashorn.eval("var global = this;")
     nashorn.eval("var console = {error: print, log: print, warn: print};")
 
-    nashorn.eval(new FileReader(environment.getFile("/modules/ui/app/assets/javascripts/dist/react.js")))
-    nashorn.eval(new FileReader(environment.getFile("/modules/ui/app/assets/javascripts/dist/server.js")))
+    nashorn.eval(new FileReader(environment.getFile("/modules/ui/public/dist/react.js")))
+    nashorn.eval(new FileReader(environment.getFile("/modules/ui/public/dist/server.js")))
 
     log.info(s"Nashorn initialized with success")
 
